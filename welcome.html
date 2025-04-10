@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Welcome</title>
+  <link rel="stylesheet" href="form.css">
+  <style>
+    body {
+      background: #f4f8fc;
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      flex-direction: column;
+    }
+
+    .welcome-box {
+      background: white;
+      padding: 40px 50px;
+      border-radius: 10px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+
+    .welcome-box h1 {
+      font-size: 28px;
+      color: #2c3e50;
+    }
+
+    .welcome-box p {
+      font-size: 18px;
+      margin-top: 15px;
+      color: #555;
+    }
+
+    .welcome-container {
+      text-align: center;
+      padding: 20px;
+    }
+
+    .welcome-message {
+      font-size: 24px;
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    .user-name {
+      color: #28a745;
+      font-weight: bold;
+    }
+
+    .booking-form {
+      background: white;
+      margin-top: 30px;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      max-width: 400px;
+      width: 100%;
+    }
+
+    .booking-form h2 {
+      margin-bottom: 20px;
+      color: #2c3e50;
+    }
+
+    .booking-form input,
+    .booking-form select {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .booking-form button {
+      background-color: #28a745;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .booking-form button:hover {
+      background-color: #218838;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="welcome-container">
+    <h1 class="welcome-message">Welcome, <span id="userName" class="user-name">User</span>!</h1>
+    <p>You have successfully logged in to your account.</p>
+    <button onclick="window.location.href='Form.html'">Logout</button>
+  </div>
+
+  <!-- Ticket Booking Section -->
+  <div class="booking-form">
+    <h2>Book Your Ticket</h2>
+    <form onsubmit="bookTicket(event)">
+      <input type="text" id="movie" placeholder="Movie Name" required>
+      <input type="date" id="date" required>
+      <input type="number" id="tickets" placeholder="Number of Tickets" min="1" required>
+      <button type="submit">Book Now</button>
+    </form>
+  </div>
+
+  <script>
+    // Get the user's name from the URL query parameters
+    const urlParams = new URLSearchParams(window.location.search);
+    const userName = urlParams.get('name');
+
+    // Update the welcome message with the user's name
+    if (userName) {
+      document.getElementById('userName').textContent = userName;
+    }
+
+    // Ticket booking functionality
+    function bookTicket(event) {
+      event.preventDefault();
+      const movie = document.getElementById('movie').value;
+      const date = document.getElementById('date').value;
+      const tickets = document.getElementById('tickets').value;
+
+      alert(`Ticket booked successfully!\nMovie: ${movie}\nDate: ${date}\nTickets: ${tickets}`);
+      
+      // Optionally reset the form
+      event.target.reset();
+    }
+  </script>
+
+</body>
+</html>
